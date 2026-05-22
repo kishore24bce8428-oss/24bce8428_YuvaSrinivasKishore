@@ -1,0 +1,53 @@
+USE VITBranches;
+SHOW TABLES FROM VITBranches;
+
+CREATE TABLE Departments(
+	did INT PRIMARY KEY,
+    dname VARCHAR(25) NOT NULL UNIQUE
+);
+INSERT INTO Departments(did,dname) 
+VALUES(101,'CSE'),(102,'ECE'),(103,'civil'),(104,'Aero'),(105,'Mech');
+
+SELECT *
+FROM Departments
+ORDER BY did;
+
+CREATE TABLE HOD(
+	hid INT PRIMARY KEY,
+    hname VARCHAR(20) NOT NULL UNIQUE
+);
+
+INSERT INTO HOD(hid,hname)
+VALUES (101,'Arun'),(102,'Sashank'),(103,'Tarak'),(104,'Lohith');
+
+SELECT *
+FROM HOD;
+
+SELECT *
+FROM Departments
+CROSS JOIN HOD
+ORDER BY did;
+
+SELECT *
+FROM HOD
+CROSS JOIN Departments
+ORDER BY hid;
+
+SELECT *
+FROM Departments
+NATURAL JOIN HOD;
+
+SELECT *
+FROM Departments d
+INNER JOIN HOD h
+		ON d.did=h.hid;
+        
+SELECT *
+FROM Departments d
+LEFT OUTER JOIN HOD h
+			ON d.did=h.hid;
+
+SELECT *
+FROM Departments d
+RIGHT OUTER JOIN HOD h
+			ON d.did=h.hid;
