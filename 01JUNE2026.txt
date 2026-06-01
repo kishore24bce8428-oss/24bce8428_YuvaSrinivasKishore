@@ -1,0 +1,54 @@
+MY SQL CODE :
+
+show databases;
+
+create database test;
+use test;
+create table student(sid int unique not null, sname varchar(30) not null,smarks int not  null);
+
+desc student;
+insert into student values(501,'Kishore',75);
+insert into student values(502,'Tarak',98);
+insert into student values(503,'Murali',88);
+insert into student values(504,'Lohith',96);
+insert into student values(505,'Yaswanth',89);
+select * from student;
+
+ECLIPSE CODE :
+import java.sql.*;
+
+public class Testing1 {
+
+	public static void main(String[] args) {
+
+		try{  
+			Class.forName("com.mysql.cj.jdbc.Driver");  //Register
+			
+			Connection con=DriverManager.getConnection(  
+			"jdbc:mysql://localhost:3306/test","root","root");  
+			
+			Statement stmt=con.createStatement();  
+			
+			ResultSet rs=stmt.executeQuery("select * from student");  
+			// -----------up to this line it contain's one table struc output
+			while(rs.next()){  
+			System.out.println(rs.getInt(1)+"  "+
+			rs.getString(2)+"  "+rs.getInt(3));
+			}
+			con.close();  
+			}
+		catch(Exception e){
+			System.out.println("Sorry for the inconvinence happened..! "
+					+ "Check the inputs properly one more time");
+			}  
+			}
+
+}
+
+OUTPUT IN ECLIPSE CONSOLE :
+
+501  Kishore  75
+502  Tarak  98
+503  Murali  88
+504  Lohith  96
+505  Yaswanth  89
